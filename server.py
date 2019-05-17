@@ -13,6 +13,19 @@ def main():
 def addUser():
     return render_template("addUser.html")
 
+@app.route("/username", methods=['POST'])
+def username():
+    found = False
+    mysql = connectToMySQL('users')        # connect to the database
+    query = "SELECT first_name FROM all_users WHERE first_name = %(fn)s;"
+    data = { 
+        'fn': request.form['fname'],
+     }
+    result = mysql.query_db(query, data)
+    if result:
+        found = True
+    return render_template('partials/username.html', found=found)
+
 @app.route("/process",methods=['POST'])
 def add_to_db():
     mysql = connectToMySQL("users") #name of your schema
