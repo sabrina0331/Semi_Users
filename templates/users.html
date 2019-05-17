@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Semi Restful Users</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+        body{
+            margin-left: 50px;
+            margin-top: 50px;
+        }
+            #wrapper {
+              font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+              border-collapse: collapse;
+              width: 50%;
+              
+            }
+            
+            #wrapper td, #wrapper th {
+              border: 1px solid #ddd;
+              padding: 8px;
+         
+            }
+            
+            #first_line  {background-color: grey;}
+            
+            #wrapper tr:hover {background-color: green;}
+
+            
+            #wrapper th {
+              padding-top: 12px;
+              padding-bottom: 12px;
+              text-align: left;
+              background-color: white;
+              color: white;
+              background-color: grey;
+            }
+            </style>
+</head>
+<body>
+    <h1>All Users</h1>
+    <table id="wrapper">
+        <tr id="first_line">
+            <td>ID</td>
+            <td>Full Name</td>
+            <td>Email</td>
+            <td>Created At</td>
+            <td>Actions</td>
+        </tr>
+        {% for user in all_my_users %}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.first_name}} {{user.last_name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.created_at}}</td>
+            <td>
+                <a href="/users/{{user.id}}">Show</a> | <a href="/edit/{{user.id}}">Edit</a> | <a href="/delete/{{user.id}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href= "/add_new">Add a New User</a>
+</body>
+</html>
